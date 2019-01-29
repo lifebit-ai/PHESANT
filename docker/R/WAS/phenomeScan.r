@@ -1,3 +1,4 @@
+#!/usr/bin/env Rscript
 # The MIT License (MIT)
 # Copyright (c) 2017 Louise AC Millard, MRC Integrative Epidemiology Unit, University of Bristol
 #
@@ -42,10 +43,10 @@ option_list = list(
 opt_parser = OptionParser(option_list=option_list);
 opt = parse_args(opt_parser);
 
-source("processArgs.r")
+source("/data/scripts/WAS/processArgs.r")
 processArgs();
 
-source("initFunctions.r")
+source("/data/scripts/WAS/initFunctions.r")
 loadSource();
 
 ## load the files we write to and use

@@ -37,8 +37,8 @@ opt = parse_args(opt_parser);
   
 if (opt$test==TRUE) {
 	
-	opt$resDir = '../testWAS/results/';
-	opt$variablelistfile = '../testWAS/variable-lists/outcome-info.tsv';
+	opt$resDir = './';
+	opt$variablelistfile = 'outcome-info.tsv';
   	
 } else {
 	

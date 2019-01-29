@@ -20,7 +20,8 @@ COPY ./R/ /data/scripts/
 
 RUN chmod -R u+x /data/scripts
 
-ENV PATH=$PATH:/data/scripts/
+ENV PATH=$PATH:/data/scripts/resultsProcessing 
+ENV PATH=$PATH:/data/scripts/WAS
 
 WORKDIR /data/scripts/
 
