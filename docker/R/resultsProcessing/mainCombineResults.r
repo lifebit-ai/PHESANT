@@ -1,3 +1,5 @@
+#!/usr/bin/env Rscript
+
 # The MIT License (MIT)
 # Copyright (c) 2017 Louise AC Millard, MRC Integrative Epidemiology Unit, University of Bristol
 #
@@ -52,16 +54,16 @@ if (opt$test==TRUE) {
         }	
 }
 
-source("combineFlowCounts.r")
+source("/data/scripts/resultsProcessing/combineFlowCounts.r")
 combineFlowCounts();
 print("Finished flow counts")
 
-source("combineResults.r")
+source("/data/scripts/resultsProcessing/combineResults.r")
 combineResults();
 print("Finished combining results")
 
 # add the name of the variable as listed in the phenotype info file
-source("addVariableDescriptions.r");
+source("/data/scripts/resultsProcessing/addVariableDescriptions.r");
 addVariableDescriptions();
 
 # sort
@@ -71,10 +73,10 @@ print("Finished adding variable descriptions to results listing")
 
 write.table(resultsAll, file=paste(opt$resDir,"results-combined.txt",sep=""), row.names=FALSE, quote=FALSE, sep="\t", na="");
 
-source("makeQQPlot.r")
+source("/data/scripts/resultsProcessing/makeQQPlot.r")
 makeQQPlot(opt$resDir,resultsAll) 
 
-source("makeForestPlots.r")
+source("/data/scripts/resultsProcessing/makeForestPlots.r")
 junk <- makeForestPlots(opt$resDir,resultsAll)
 
 

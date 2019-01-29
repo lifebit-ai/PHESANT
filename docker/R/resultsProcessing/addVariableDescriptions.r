@@ -112,7 +112,7 @@ addVariableDescriptions <- function() {
 	#### add category structure for PHESANT-viz - first 3 category levels
 
 	## load category hierarchy
-        catHier = read.table("catbrowse.txt", header=1, sep="\t")
+        catHier = read.table("/data/scripts/resultsProcessing/catbrowse.txt", header=1, sep="\t")
 
 	## set category names
 	resultsAll$Path <<- as.character(resultsAll$Path)

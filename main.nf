@@ -8,7 +8,7 @@ Channel.fromPath(params.traitfile)
     .set { traitfile }
 Channel.fromPath(params.variablelist)
     .ifEmpty { exit 1, "Variable list tsv file not found: ${params.variablelist}" }
-    .set { variablelist }
+    .into { variablelist; variablelist_processing }
 Channel.fromPath(params.datacoding)
     .ifEmpty { exit 1, "Data coding txt file not found: ${params.datacoding}" }
     .set { datacoding }
@@ -38,5 +38,23 @@ process phenomeScan {
     --traitofinterest=${params.trait} \
     --resDir="./" \
     --userId=${params.userId}
+    """
+}
+
+process resultsProcessing {
+    publishDir "${params.outdir}/resultsProcessing", mode: 'copy'
+
+    input:
+    file results from results
+    file variablelist from variablelist_processing
+
+    output:
+    file('*') into resultsProcessing
+
+    script:
+    """
+    mainCombineResults.r \
+    --resDir="./" \
+    --variablelistfile="$variablelist" 
     """
 }
