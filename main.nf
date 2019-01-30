@@ -58,3 +58,41 @@ process resultsProcessing {
     --variablelistfile="$variablelist" 
     """
 }
+
+process visualisations {
+    publishDir "${params.outdir}/Visualisations", mode: 'copy'
+
+    container 'lifebitai/vizjson:latest'
+
+    input:
+    file plots from resultsProcessing
+
+    output:
+    file '.report.json' into viz
+
+    script:
+    """
+    for image in \$(ls *png); do
+        prefix="\${image%.*}"
+
+        if [[ \$prefix == "forest-binary" ]]; then
+            title="Forest Binary"
+        elif [ \$prefix == "forest-continuous" ]; then
+            title="Forest Continuous"
+        elif [ \$prefix == "forest-ordered-logistic" ]; then
+            title="Forest Ordered Logistic"
+        elif [ \$prefix == "qqplot" ]; then
+            title="QQ Plot"
+        fi
+
+        img2json.py "${params.outdir}/\$image" "\$title" \${prefix}.json
+    done
+    
+    table=\$(ls *.txt)
+    prefix=\${table%.*}
+    tsv2csv.py < \${prefix}.txt > \${prefix}.csv
+    csv2json.py \${prefix}.csv "Combined Results" 'results-combined.json'
+    
+    combine_reports.py .
+    """
+}

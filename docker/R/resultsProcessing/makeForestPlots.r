@@ -130,7 +130,7 @@ doMakeForest <- function(results, label, resDir, thisXLabel, nullValue) {
 	tabletext <- list(rownames(v))
 
 	## plot forest
-	pdf(paste(resDir,"forest-",label,".pdf",sep=""), height=2+nrow(v)*0.4, width=9) #height in inches, 0.4 inches = 1cm
+	png(paste(resDir,"forest-",label,".png",sep=""), width = 4, height = 4, units = 'in', res = 1200) #height in inches, 0.4 inches = 1cm
 	forestplot(tabletext, v$mean, v$lower, v$upper, 
 		xlab=thisXLabel, 
 		new_page=FALSE, 

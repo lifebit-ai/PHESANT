@@ -54,7 +54,7 @@ makeQQPlot <- function(resDir, resultsAll) {
 	pLog10[idxZero] = -log10(5e-324)
 
 	## plot qqplot
-	pdf(paste(resDir,"qqplot.pdf",sep=""))
+	png(paste(resDir,"qqplot.png",sep=""))
 
 	# qq
 	par(pch='.')
