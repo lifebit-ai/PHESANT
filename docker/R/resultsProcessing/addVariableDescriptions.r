@@ -48,7 +48,7 @@ addVariableDescriptions <- function() {
 
 		# get data codes for this field
 		if(dccurrent!=thisDC) {
-			dcfile=paste('../ukb_data_codes/data_codes/datacode-',thisDC,'.tsv', sep='')
+			dcfile=paste('/data/scripts/resultsProcessing/ukb_data_codes/data_codes/datacode-',thisDC,'.tsv', sep='')
 		}
 		if (file.exists(dcfile)) {
 

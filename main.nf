@@ -42,7 +42,7 @@ process phenomeScan {
 }
 
 process resultsProcessing {
-    publishDir "${params.outdir}/resultsProcessing", mode: 'copy'
+    publishDir "${params.outdir}", mode: 'copy'
 
     input:
     file results from results
