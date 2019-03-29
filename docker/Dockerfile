@@ -8,10 +8,10 @@ LABEL description="Docker image containing all dependencies for PheWAS pipeline:
 LABEL Phil Palmer <phil@lifebit.ai>
 
 # Install R dependencies 
-RUN Rscript -e "install.packages('optparse')" && \
-    Rscript -e "install.packages('forestplot')" && \
-    Rscript -e "install.packages('data.table')" && \
-    Rscript -e "install.packages('lmtest')"
+RUN Rscript -e "install.packages('optparse', repos = 'http://cran.us.r-project.org')" && \
+    Rscript -e "install.packages('forestplot', repos = 'http://cran.us.r-project.org')" && \
+    Rscript -e "install.packages('data.table', repos = 'http://cran.us.r-project.org')" && \
+    Rscript -e "install.packages('lmtest', repos = 'http://cran.us.r-project.org')"
 
 RUN mkdir /data && \
     mkdir /data/scripts/
