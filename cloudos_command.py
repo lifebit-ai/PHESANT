@@ -70,7 +70,7 @@ def fetch_cloudos_workflow_id(apikey, workflow_name, url, urlopt):
 
 workflow_id = fetch_cloudos_workflow_id(apikey, workflow_name, url, urlopt)
 if not workflow_id:
-    sys.exit("workflow id couldn't be find. Check that you provided a valid workflow name")
+    sys.exit("workflow id couldn't be found. Check that you provided a valid workflow name")
 else:
     print("Workflow '" + workflow_name + "': " + workflow_id)
 
