@@ -1,21 +1,21 @@
 #!/usr/bin/env nextflow
 
-Channel.fromPath(params.pheno)
-    .ifEmpty { exit 1, "Phenotypes csv file not found: ${params.pheno}" }
+Channel.fromPath(params.phenofile)
+    .ifEmpty { exit 1, "Phenotypes csv file not found: ${params.phenofile}" }
     .set { pheno }
-Channel.fromPath(params.traitfile)
-    .ifEmpty { exit 1, "Trait of interest csv file not found: ${params.traitfile}" }
+Channel.fromPath(params.traitofinterestfile)
+    .ifEmpty { exit 1, "Trait of interest csv file not found: ${params.traitofinterestfile}" }
     .set { traitfile }
-Channel.fromPath(params.variablelist)
-    .ifEmpty { exit 1, "Variable list tsv file not found: ${params.variablelist}" }
+Channel.fromPath(params.variablelistfile)
+    .ifEmpty { exit 1, "Variable list tsv file not found: ${params.variablelistfile}" }
     .into { variablelist; variablelist_processing }
-Channel.fromPath(params.datacoding)
-    .ifEmpty { exit 1, "Data coding txt file not found: ${params.datacoding}" }
+Channel.fromPath(params.datacodingfile)
+    .ifEmpty { exit 1, "Data coding txt file not found: ${params.datacodingfile}" }
     .set { datacoding }
 
 
 process phenomeScan {
-    publishDir "${params.outdir}/phenomeScan", mode: 'copy'
+    publishDir "${params.resDir}/phenomeScan", mode: 'copy'
 
     input:
     file pheno from pheno
@@ -35,14 +35,14 @@ process phenomeScan {
     --traitofinterestfile=${traitfile} \
     --variablelistfile=${variablelist} \
     --datacodingfile=${datacoding} \
-    --traitofinterest=${params.traitcol} \
+    --traitofinterest=${params.traitofinterest} \
     --resDir="./" \
     --userId=${params.userId}
     """
 }
 
 process resultsProcessing {
-    publishDir "${params.outdir}", mode: 'copy'
+    publishDir "${params.resDir}", mode: 'copy'
 
     input:
     file results from results
@@ -60,7 +60,7 @@ process resultsProcessing {
 }
 
 process visualisations {
-    publishDir "${params.outdir}/Visualisations", mode: 'copy'
+    publishDir "${params.resDir}/Visualisations", mode: 'copy'
 
     container 'lifebitai/vizjson:latest'
 
@@ -85,7 +85,7 @@ process visualisations {
             title="QQ Plot"
         fi
 
-        img2json.py "${params.outdir}/\$image" "\$title" \${prefix}.json
+        img2json.py "${params.resDir}/\$image" "\$title" \${prefix}.json
     done
     
     table=\$(ls *.txt)

@@ -5,18 +5,18 @@ Next section describes how to launch the pipeline with correct pipeline paramete
 
 ## Running the pipeline
 
-### Example run
 To test the pipeline using example data run:
 ```
 git clone https://github.com/lifebit-ai/PHESANT.git
 cd PHESANT
 nextflow run main.nf \
-    --pheno testWAS/data/phenotypes.csv \
-    --traitfile testWAS/data/exposure.csv \
-    --variablelist testWAS/variable-lists/outcome-info.tsv \
-    --datacoding testWAS/variable-lists/data-coding-ordinal-info.txt \
-    --traitcol "exposure" \
-    --userId "userId"
+    --phenofile testWAS/data/phenotypes.csv \
+    --traitofinterestfile testWAS/data/exposure.csv \
+    --variablelistfile testWAS/variable-lists/outcome-info.tsv \
+    --datacodingfile testWAS/variable-lists/data-coding-ordinal-info.txt \
+    --traitofinterest "exposure" \
+    --userId "userId" \
+    --resDir "results"
 ```
 Alternatively - run equivalent command using test profile:
 ```
@@ -25,20 +25,9 @@ nextflow run main.nf -profile test
 
 ### Nextflow Pipeline parameters
 
-Required pipeline arguments mapped to PHESANT tool arguments.
-The description of the arguments read below in Required arguments section.
+All available pipeline parameters are shown  in example command above, all of them match the PHESANT tool's scripts parameters. But not all PHESANT tool parameters are exposed with the pipeline. 
 
-Pipeline arg | Tool arg
--------|--------
-pheno | phenofile
-traitfile | traitofinterestfile
-variablelist | variablelistfile
-datacoding | datacodingfile
-traitcol | traitofinterest
-userId | userId
-outdir | resDir
-
-By default the pipeline parameter `outdir` is set to `'results'`. All other pipeline parameters in the table above are required to be specified by user.
+All parameters besides `userID` and `resDir` are required to be set by user to run the pipeline. `userId` has a default value `"userID"` that matches column name in example input file. `resDir` has a default value `"results"` that is required by CloudOS to pick up the relsults and present them to the user.
 
 
 # PHESANT - PHEnome Scan ANalysis Tool
