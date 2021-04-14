@@ -35,7 +35,7 @@ process phenomeScan {
     --traitofinterestfile=${traitfile} \
     --variablelistfile=${variablelist} \
     --datacodingfile=${datacoding} \
-    --traitofinterest=${params.trait} \
+    --traitofinterest=${params.traitcol} \
     --resDir="./" \
     --userId=${params.userId}
     """
