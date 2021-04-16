@@ -1,5 +1,27 @@
 #!/usr/bin/env nextflow
 
+
+
+/*
+ * Check all required inputs
+ */
+
+// Check if user provided phenofile
+if (!params.phenofile) exit 1, "Phenofile was not specified. Please provide it with the option: --phenofile [file]."
+
+// Check if user provided traitofinterestfile
+if (!params.traitofinterestfile) exit 1, "Traitofinterestfile was not specified. Please provide it with the option: --traitofinterestfile [file]."
+
+// Check if user provided variablelistfile
+if (!params.phenofile) exit 1, "Variablelistfile was not specified. Please provide it with the option: --variablelistfile [file]."
+
+// Check if user provided datacodingfile
+if (!params.phenofile) exit 1, "Datacodingfile was not specified. Please provide it with the option: --datacodingfile [file]."
+
+// Check if user provided traitofinterest
+if (!params.traitofinterest) exit 1, "Trait of interest was not specified. Please provide it with the option: --traitofinterest [string]."
+
+
 Channel.fromPath(params.phenofile)
     .ifEmpty { exit 1, "Phenotypes csv file not found: ${params.phenofile}" }
     .set { pheno }
