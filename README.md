@@ -1,3 +1,35 @@
+# PHESANT nextflow pipeline
+Current pipeline runs all three steps of PHESANT tool in a streamlined and simlple manner. 
+
+Next section describes how to launch the pipeline with correct pipeline parameters to run all steps of PHESANT tool. The in-depth description of tool's steps, files and parameters can be found below in "PHESANT - PHEnome Scan ANalysis Tool" section.
+
+## Running the pipeline
+
+To test the pipeline using example data run:
+```
+git clone https://github.com/lifebit-ai/PHESANT.git
+cd PHESANT
+nextflow run main.nf \
+    --phenofile testWAS/data/phenotypes.csv \
+    --traitofinterestfile testWAS/data/exposure.csv \
+    --variablelistfile testWAS/variable-lists/outcome-info.tsv \
+    --datacodingfile testWAS/variable-lists/data-coding-ordinal-info.txt \
+    --traitofinterest "exposure" \
+    --userId "userId" \
+    --resDir "results"
+```
+Alternatively - run equivalent command using test profile:
+```
+nextflow run main.nf -profile test
+```
+
+### Nextflow Pipeline parameters
+
+All available pipeline parameters are shown  in example command above, all of them match the PHESANT tool's scripts parameters. But not all PHESANT tool parameters are exposed with the pipeline. 
+
+All parameters besides `userID` and `resDir` are required to be set by user to run the pipeline. `userId` has a default value `"userID"` that matches column name in example input file. `resDir` has a default value `"results"` that is required by CloudOS to pick up the relsults and present them to the user.
+
+
 # PHESANT - PHEnome Scan ANalysis Tool
 Run a phenome scan (pheWAS, Mendelian randomisation (MR)-pheWAS etc.) in UK Biobank.
 
