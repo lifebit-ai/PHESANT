@@ -157,7 +157,7 @@ def send_job_request_to_cloudos(apikey, workflow_id, project_id, url, urlopt):
         "computeCostLimit":-1,
         "optim":"test"
         },
-        "instanceType": "m2.2xlarge",
+        "instanceType": "c4.xlarge",
         "masterInstance": {
             "requestedInstance": {
             "type":"m2.2xlarge"
