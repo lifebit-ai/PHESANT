@@ -19,7 +19,7 @@ jobs:
           sudo mv nextflow /usr/local/bin/
       - name: Pull docker image
         run: |
-          docker pull lifebitai/biobank-scanner:latest
+          docker pull quay.io/lifebitai/biobank-scanner:latest
       - name: Run pipeline with test data
         run: |
           nextflow run ${GITHUB_WORKSPACE} -profile test
