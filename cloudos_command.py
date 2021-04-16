@@ -87,7 +87,7 @@ def send_job_request_to_cloudos(apikey, workflow_id, project_id, url, urlopt):
     workflow_params = [
         {
             "prefix":"--",
-            "name":"pheno",
+            "name":"phenofile",
             "dataItemEmbedded":{
                 "type":"S3File",
                 "data":{
@@ -99,7 +99,7 @@ def send_job_request_to_cloudos(apikey, workflow_id, project_id, url, urlopt):
         },
         {
             "prefix":"--",
-            "name":"traitfile",
+            "name":"traitofinterestfile",
             "dataItemEmbedded":{
                 "type":"S3File",
                 "data":{
@@ -111,7 +111,7 @@ def send_job_request_to_cloudos(apikey, workflow_id, project_id, url, urlopt):
         },
         {
             "prefix":"--",
-            "name":"variablelist",
+            "name":"variablelistfile",
             "dataItemEmbedded":{
                 "type":"S3File",
                 "data":{
@@ -123,7 +123,7 @@ def send_job_request_to_cloudos(apikey, workflow_id, project_id, url, urlopt):
         },
         {
             "prefix":"--",
-            "name":"datacoding",
+            "name":"datacodingfile",
             "dataItemEmbedded":{
                 "type":"S3File",
                 "data":{
@@ -135,7 +135,7 @@ def send_job_request_to_cloudos(apikey, workflow_id, project_id, url, urlopt):
         },
         {
             "prefix":"--",
-            "name":"traitcol",
+            "name":"traitofinterest",
             "parameterKind":"textValue",
             "textValue": "exposure"
         },
